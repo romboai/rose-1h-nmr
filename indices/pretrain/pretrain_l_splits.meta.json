@@ -1,0 +1,39 @@
+{
+  "corpus": "ROSE-Pretrain-L",
+  "corpus_version": "v005_no_simnmr_paper_holdout",
+  "format": {
+    "train": "list[int] — row sample_id in corpus.parquet (0-based row index)",
+    "val": "list[int]",
+    "test": "list[int]"
+  },
+  "counts": {
+    "train": 3210452,
+    "val": 401774,
+    "test": 401462
+  },
+  "grid": {
+    "ppm_min": 0.0,
+    "ppm_max": 14.0,
+    "num_points": 4096
+  },
+  "split_policy": "scaffold-aware by InChIKey-14; paper holdout H excluded before split",
+  "holdout_index": "../holdout/paper_test_holdout_inchikey14.csv",
+  "sources": [
+    "zenodo_sagmeister_6064586",
+    "zenodo_ibm_msd_14770232",
+    "hmdb",
+    "bmrb",
+    "metabolights",
+    "bmr_gissmo",
+    "nmrxiv",
+    "benchmark_nmr2struct_13892026",
+    "benchmark_chefnmr_spectranp",
+    "benchmark_chefnmr_spectrabase",
+    "benchmark_chefnmr_uspto",
+    "nmrshiftdb2",
+    "benchmark_nmrbank_train",
+    "benchmark_nmrexp_17296666",
+    "benchmark_nmrnet_train"
+  ],
+  "note": "IDs only — no spectra. Map sample_id → metadata via rebuilt corpus.parquet from cited sources."
+}

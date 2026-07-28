@@ -1,0 +1,12 @@
+{
+  "split_method": "murcko_scaffold",
+  "seed": 42,
+  "train_frac": 0.8,
+  "val_frac": 0.1,
+  "n_total": 148048,
+  "n_train": 118458,
+  "n_val": 14786,
+  "n_test": 14804,
+  "identical_smiles_leaks": [],
+  "leakage_clean": true
+}

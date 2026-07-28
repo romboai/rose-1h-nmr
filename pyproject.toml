@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rose-1h-nmr"
+version = "0.1.0"
+description = "ROSE — pretrained ¹H NMR foundation model (inference + paper protocols)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [{ name = "ROSE contributors" }]
+dependencies = [
+    "torch>=2.1",
+    "torch-geometric>=2.4",
+    "numpy>=1.24",
+    "pyyaml>=6.0",
+    "rdkit",
+]
+
+[project.optional-dependencies]
+hub = ["huggingface_hub>=0.20"]
+dev = ["pytest>=7.4", "ruff>=0.1", "huggingface_hub>=0.20"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

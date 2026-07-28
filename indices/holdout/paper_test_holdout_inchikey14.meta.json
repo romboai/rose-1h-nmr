@@ -1,0 +1,27 @@
+{
+  "n_unique_inchikey14": 35628,
+  "sources": {
+    "NMRNet": {
+      "n_rows": 2554,
+      "n_unique_inchikey14": 2443
+    },
+    "NMRBank": {
+      "n_rows": 14804,
+      "n_unique_inchikey14": 14557
+    },
+    "NMR-Solver": {
+      "n_rows": 450,
+      "n_unique_inchikey14": 449
+    },
+    "NMRformer": {
+      "n_rows": 71,
+      "n_unique_inchikey14": 71
+    },
+    "NMRGym": {
+      "n_rows": 27054,
+      "n_unique_inchikey14": 18762,
+      "pkl": "/home/rombo/Desktop/foundation_model_data/data/benchmark_eval/nmrgym_eval/raw/hf_pkl/NMRGym_test_balanced_dedup.pkl"
+    }
+  },
+  "note": "Union of identity-based literature eval test sets (IK14). QIB oils excluded from H (no IK14); held out by source exclusion. Apply H to train/val/test during corpus construction; scaffold split separately enforces train\u2260val\u2260internal-test."
+}

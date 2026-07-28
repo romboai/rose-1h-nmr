@@ -1,0 +1,23 @@
+{
+  "architectures": ["RoseModel"],
+  "model_type": "rose-1h",
+  "library_name": "rose-1h-nmr",
+  "version": "0.1.0",
+  "repo_id": "romboai/ROSE-1H",
+  "weights_file": "best_model.pt",
+  "config_file": "rose.yaml",
+  "spectrum": {
+    "nucleus": "1H",
+    "ppm_min": 0.0,
+    "ppm_max": 14.0,
+    "num_points": 4096
+  },
+  "spectral_encoder": {
+    "type": "vit_1d",
+    "embed_dim": 256,
+    "num_layers": 8,
+    "num_heads": 8,
+    "patch_size": 32
+  },
+  "tasks": ["denoise", "pair", "retrieval", "forward", "peak"]
+}
