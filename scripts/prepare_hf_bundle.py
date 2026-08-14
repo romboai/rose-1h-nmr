@@ -39,7 +39,7 @@ def main() -> None:
 
     print(f"staged: {out}")
     print("upload when ready:")
-    print(f"  huggingface-cli upload romboai/ROSE-1H {out} --repo-type model")
+    print(f"  huggingface-cli upload romboai/rose-1h-nmr {out} --repo-type model")
 
 
 if __name__ == "__main__":

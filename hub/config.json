@@ -3,7 +3,7 @@
   "model_type": "rose-1h",
   "library_name": "rose-1h-nmr",
   "version": "0.1.0",
-  "repo_id": "romboai/ROSE-1H",
+  "repo_id": "romboai/rose-1h-nmr",
   "weights_file": "best_model.pt",
   "config_file": "rose.yaml",
   "spectrum": {

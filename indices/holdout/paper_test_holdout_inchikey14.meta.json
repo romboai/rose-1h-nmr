@@ -20,7 +20,7 @@
     "NMRGym": {
       "n_rows": 27054,
       "n_unique_inchikey14": 18762,
-      "pkl": "/home/rombo/Desktop/foundation_model_data/data/benchmark_eval/nmrgym_eval/raw/hf_pkl/NMRGym_test_balanced_dedup.pkl"
+      "source": "huggingface.co/datasets/meaw0415/NMRGym (NMRGym_test_balanced_dedup.pkl)"
     }
   },
   "note": "Union of identity-based literature eval test sets (IK14). QIB oils excluded from H (no IK14); held out by source exclusion. Apply H to train/val/test during corpus construction; scaffold split separately enforces train\u2260val\u2260internal-test."

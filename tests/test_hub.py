@@ -11,7 +11,7 @@ from rose.hub import is_hub_id, resolve_checkpoint
 
 
 def test_is_hub_id():
-    assert is_hub_id("romboai/ROSE-1H")
+    assert is_hub_id("romboai/rose-1h-nmr")
     assert not is_hub_id("best_model.pt")
     assert not is_hub_id("/tmp/best_model.pt")
     assert not is_hub_id("./ckpt.pt")
@@ -64,4 +64,4 @@ def test_hub_missing_dep_message():
         return real_import(name, *args, **kwargs)
 
     with patch("builtins.__import__", _block), pytest.raises(ImportError, match="huggingface_hub"):
-        hub.resolve_hub_file("romboai/ROSE-1H", filename="best_model.pt")
+        hub.resolve_hub_file("romboai/rose-1h-nmr", filename="best_model.pt")

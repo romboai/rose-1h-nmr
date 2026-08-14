@@ -9,3 +9,4 @@ build/
 *.pt
 *.pth
 uv.lock
+hf_bundle/

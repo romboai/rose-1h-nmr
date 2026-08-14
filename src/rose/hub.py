@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-DEFAULT_REPO_ID = "romboai/ROSE-1H"
+DEFAULT_REPO_ID = "romboai/rose-1h-nmr"
 DEFAULT_WEIGHTS = "best_model.pt"
 DEFAULT_CONFIG = "rose.yaml"
 
