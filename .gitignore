@@ -10,3 +10,4 @@ build/
 *.pth
 uv.lock
 hf_bundle/
+*.zip

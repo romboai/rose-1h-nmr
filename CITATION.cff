@@ -6,10 +6,18 @@ license: Apache-2.0
 date-released: "2026-08-25"
 url: "https://github.com/romboai/rose-1h-nmr"
 repository-code: "https://github.com/romboai/rose-1h-nmr"
-doi: 10.26434/chemrxiv.15007823/v1
+doi: 10.5281/zenodo.22142631
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22142631
+    description: Concept DOI (all versions)
+  - type: doi
+    value: 10.5281/zenodo.22142632
+    description: Version DOI (v0.1.0)
 authors:
   - family-names: Di Iorio
     given-names: Mattia
+    orcid: "https://orcid.org/0009-0003-6899-7900"
   - family-names: Mattia
     given-names: Carmine
   - family-names: Zanda
@@ -24,6 +32,7 @@ preferred-citation:
   authors:
     - family-names: Di Iorio
       given-names: Mattia
+      orcid: "https://orcid.org/0009-0003-6899-7900"
     - family-names: Mattia
       given-names: Carmine
     - family-names: Zanda

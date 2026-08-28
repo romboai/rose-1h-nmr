@@ -1,35 +1,43 @@
 # ROSE-1H NMR
 
 [![ChemRxiv](https://img.shields.io/badge/ChemRxiv-10.26434%2Fchemrxiv.15007823%2Fv1-blue)](https://doi.org/10.26434/chemrxiv.15007823/v1)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22142631.svg)](https://doi.org/10.5281/zenodo.22142631)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-rose--1h--nmr-yellow)](https://huggingface.co/romboai/rose-1h-nmr)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](LICENSE)
 
 Pretrained **¹H NMR** foundation model — inference and paper adaptation protocols.
 
-**Paper:** [ChemRxiv](https://doi.org/10.26434/chemrxiv.15007823/v1) (`10.26434/chemrxiv.15007823/v1`).  
-**Weights:** [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/rose-1h-nmr) (Hugging Face).  
+**Paper:** [ChemRxiv](https://doi.org/10.26434/chemrxiv.15007823/v1).
+**Archive:** [Zenodo](https://doi.org/10.5281/zenodo.22142631) (all versions; v0.1.0 is [10.5281/zenodo.22142632](https://doi.org/10.5281/zenodo.22142632)).
+**Weights:** [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/rose-1h-nmr).
 **Code:** this repo.
 
-## Installation
+<p align="center">
+  <img src="docs/encoder_geometry.png" alt="UMAP of ROSE frozen 1H NMR embeddings" width="800">
+</p>
 
-```bash
-pip install -e .
-# weights from Hugging Face:
-pip install -e ".[hub]"
-```
+<p align="center"><em>Frozen [CLS] embeddings (UMAP). From the paper.</em></p>
 
 ## Quick start
 
-Spectra are `float32` arrays of shape `(4096,)` or `(B, 4096)` on a linear **0–14 ppm** grid.  
-`field_mhz` and `solvent_id` are optional (`solvent_id` → `configs/solvent_vocab.json`).
+```bash
+git clone https://github.com/romboai/rose-1h-nmr.git
+cd rose-1h-nmr && pip install -e ".[hub]"
+```
+
+```python
+from rose import load, encode
+model = load()
+z = encode(model, spectrum)  # float32, shape (4096,), linear 0–14 ppm
+```
+
+Input may also be `(B, 4096)`. `field_mhz` and `solvent_id` are optional (`solvent_id` → `configs/solvent_vocab.json`). Local weights: `load("path/to/best_model.pt")`.
 
 ```python
 import numpy as np
 from rose import load, encode, predict
 
-model = load()                         # default: romboai/rose-1h-nmr
-# model = load("path/to/best_model.pt")
-
+model = load()
 spectrum = np.load("spectrum.npy")     # (4096,)
 z = encode(model, spectrum, field_mhz=400.0, solvent_id=3)  # cdcl3 → (B, 256)
 ```
@@ -169,10 +177,21 @@ Weights: Hugging Face [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/ros
 }
 ```
 
+## Data
+
+**Recipes only — no pretraining parquet.** Reconstruct ROSE-Pretrain-L from the cited sources (`ATTRIBUTION.md`) with the paper holdout and split policy. This repo ships:
+
+- holdout **H** as InChIKey-14 keys (`indices/holdout/`)
+- split policy + catalog IDs (`indices/pretrain/pretrain_l_splits.meta.json`)
+- literature eval ID lists (`indices/benchmarks/`)
+
+Spectra stay with the original distributors. Weights are on Hugging Face, not a data dump.
+
 ## Repository layout
 
 | Path | Role |
 |------|------|
+| `docs/` | README figure (encoder UMAP) |
 | `src/rose/` | Library — model, encoders, API, task heads |
 | `configs/` | `rose.yaml`, `solvent_vocab.json` |
 | `hub/` | Hugging Face metadata (`config.json`) |
@@ -182,3 +201,9 @@ Weights: Hugging Face [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/ros
 | `indices/benchmarks/` | Eval splits (NMRBank, NMR-Solver) and literature holdouts |
 
 Indices hold **IDs only** (no spectra). Each `.meta.json` documents format and split policy.
+
+## License
+
+Code and pretrained weights: [Apache-2.0](LICENSE). See [`NOTICE`](NOTICE).
+
+Training and evaluation **spectra are not in this repository**. Source names, licenses, and citations: [`ATTRIBUTION.md`](ATTRIBUTION.md).

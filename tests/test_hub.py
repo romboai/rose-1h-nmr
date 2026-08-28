@@ -7,7 +7,7 @@ import pytest
 import torch
 
 from rose import DEFAULT_REPO_ID, RoseModel, load, load_config
-from rose.hub import DEFAULT_REVISION, is_hub_id, resolve_checkpoint
+from rose.hub import DEFAULT_REVISION, file_sha256, is_hub_id, resolve_checkpoint
 
 
 def test_is_hub_id():
@@ -45,7 +45,11 @@ def test_hub_download_mocked(tmp_path: Path):
             return str(fake)
         raise FileNotFoundError(filename)
 
-    with patch("huggingface_hub.hf_hub_download", _fake_download):
+    digest = file_sha256(fake)
+    with (
+        patch("huggingface_hub.hf_hub_download", _fake_download),
+        patch("rose.hub.DEFAULT_WEIGHTS_SHA256", digest),
+    ):
         path = resolve_checkpoint(DEFAULT_REPO_ID)
         assert path == fake
         loaded = load(DEFAULT_REPO_ID)
@@ -82,3 +86,14 @@ def test_hub_missing_dep_message():
 
     with patch("builtins.__import__", _block), pytest.raises(ImportError, match="huggingface_hub"):
         hub.resolve_hub_file("romboai/rose-1h-nmr", filename="best_model.pt")
+
+
+def test_file_sha256_and_mismatch(tmp_path: Path):
+    from rose.hub import verify_weights_sha256
+
+    p = tmp_path / "best_model.pt"
+    p.write_bytes(b"rose-weights-fixture")
+    digest = file_sha256(p)
+    verify_weights_sha256(p, expected=digest)
+    with pytest.raises(ValueError, match="checksum mismatch"):
+        verify_weights_sha256(p, expected="0" * 64)

@@ -1,0 +1,17 @@
+ROSE-1H NMR
+Copyright 2026 ROSE contributors
+
+This product is licensed under the Apache License, Version 2.0.
+See the LICENSE file.
+
+The pretrained weights (`best_model.pt`) are released under the same Apache-2.0
+license. They are a trained model artifact, not a copy of any upstream NMR
+dataset.
+
+ROSE does not distribute third-party spectra, peak lists, or molecular
+databases. Those resources remain subject to their original licenses and
+must be obtained from the original providers. A source-by-source list is in
+ATTRIBUTION.md.
+
+Apache-2.0 on this software and on the weights is not a license grant on
+HMDB, SpectraBase, or any other upstream dataset.
