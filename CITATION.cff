@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: If you use ROSE, please cite the ChemRxiv preprint.
+title: "ROSE: a Foundation Model for Reusable One-dimensional Spectrum Embeddings in 1H NMR"
+version: 0.1.0
+license: Apache-2.0
+date-released: "2026-08-25"
+url: "https://github.com/romboai/rose-1h-nmr"
+repository-code: "https://github.com/romboai/rose-1h-nmr"
+doi: 10.26434/chemrxiv.15007823/v1
+authors:
+  - family-names: Di Iorio
+    given-names: Mattia
+  - family-names: Mattia
+    given-names: Carmine
+  - family-names: Zanda
+    given-names: Andrea
+    orcid: "https://orcid.org/0009-0004-2867-9374"
+  - family-names: Atzori
+    given-names: Maurizio
+    affiliation: Università di Cagliari
+preferred-citation:
+  type: article
+  title: "ROSE: a Foundation Model for Reusable One-dimensional Spectrum Embeddings in 1H NMR"
+  authors:
+    - family-names: Di Iorio
+      given-names: Mattia
+    - family-names: Mattia
+      given-names: Carmine
+    - family-names: Zanda
+      given-names: Andrea
+      orcid: "https://orcid.org/0009-0004-2867-9374"
+    - family-names: Atzori
+      given-names: Maurizio
+      affiliation: Università di Cagliari
+  year: 2026
+  month: 8
+  journal: ChemRxiv
+  doi: 10.26434/chemrxiv.15007823/v1
+  url: "https://doi.org/10.26434/chemrxiv.15007823/v1"
+  notes: Preprint

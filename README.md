@@ -13,7 +13,7 @@ pipeline_tag: feature-extraction
 
 Pretrained **¹H NMR** foundation model — inference and paper adaptation protocols.
 
-**Paper:** preprint forthcoming.  
+**Paper:** [ChemRxiv](https://doi.org/10.26434/chemrxiv.15007823/v1) (`10.26434/chemrxiv.15007823/v1`).  
 **Weights:** [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/rose-1h-nmr) (Hugging Face).  
 **Code:** this repo.
 
@@ -169,8 +169,10 @@ Weights: Hugging Face [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/ros
   author  = {Di Iorio, Mattia and Mattia, Carmine and Zanda, Andrea
              and Atzori, Maurizio},
   year    = {2026},
-  note    = {Paper link forthcoming},
-  url     = {https://github.com/romboai/rose-1h-nmr}
+  journal = {ChemRxiv},
+  doi     = {10.26434/chemrxiv.15007823/v1},
+  url     = {https://doi.org/10.26434/chemrxiv.15007823/v1},
+  note    = {Preprint}
 }
 ```
 

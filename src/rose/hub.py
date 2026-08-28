@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 DEFAULT_REPO_ID = "romboai/rose-1h-nmr"
+DEFAULT_REVISION = "7ef29e44865bc515e180c76aa970531993ed5dde"
 DEFAULT_WEIGHTS = "best_model.pt"
 DEFAULT_CONFIG = "rose.yaml"
 
@@ -15,6 +16,14 @@ def is_hub_id(value: str | Path) -> bool:
     if p.exists():
         return False
     return "/" in s and not s.startswith((".", "/", "~"))
+
+
+def effective_revision(repo_id: str, revision: str | None) -> str | None:
+    if revision is not None:
+        return revision
+    if repo_id == DEFAULT_REPO_ID:
+        return DEFAULT_REVISION
+    return None
 
 
 def resolve_hub_file(
@@ -33,7 +42,7 @@ def resolve_hub_file(
     path = hf_hub_download(
         repo_id=repo_id,
         filename=filename,
-        revision=revision,
+        revision=effective_revision(repo_id, revision),
         cache_dir=str(cache_dir) if cache_dir else None,
     )
     return Path(path)
