@@ -1,15 +1,8 @@
----
-license: apache-2.0
-library_name: rose-1h-nmr
-tags:
-  - nmr
-  - chemistry
-  - foundation-model
-  - pytorch
-pipeline_tag: feature-extraction
----
-
 # ROSE-1H NMR
+
+[![ChemRxiv](https://img.shields.io/badge/ChemRxiv-10.26434%2Fchemrxiv.15007823%2Fv1-blue)](https://doi.org/10.26434/chemrxiv.15007823/v1)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-rose--1h--nmr-yellow)](https://huggingface.co/romboai/rose-1h-nmr)
+[![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](LICENSE)
 
 Pretrained **¹H NMR** foundation model — inference and paper adaptation protocols.
 
@@ -145,7 +138,7 @@ Headline numbers from the ROSE paper (ROSE-Pretrain-L, 7.8M parameters, 3.2M pre
 | Forward | Chamfer (+ count) ↓ | 1.89 |
 | Peak | F1 @ 0.05 ppm | 0.80 |
 
-Low-field slice ($B_0$ ≤ 100 MHz) is weaker on structure-linked heads (retrieval 45.2%, peak F1 0.20); denoise cosine stays high (0.99).
+Low-field slice (B₀ ≤ 100 MHz) is weaker on structure-linked heads (retrieval 45.2%, peak F1 0.20); denoise cosine stays high (0.99).
 
 **External** — comparisons use the **same protocol** as ROSE, not a published stack under different retrieval machinery:
 
