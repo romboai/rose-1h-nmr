@@ -14,17 +14,22 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.22142632
     description: Version DOI (v0.1.0)
+  - type: doi
+    value: 10.5281/zenodo.23260453
+    description: Version DOI (v0.2.0)
 authors:
   - family-names: Di Iorio
     given-names: Mattia
     orcid: "https://orcid.org/0009-0003-6899-7900"
   - family-names: Mattia
     given-names: Carmine
+    orcid: "https://orcid.org/0000-0002-5484-6381"
   - family-names: Zanda
     given-names: Andrea
     orcid: "https://orcid.org/0009-0004-2867-9374"
   - family-names: Atzori
     given-names: Maurizio
+    orcid: "https://orcid.org/0000-0001-6112-7310"
     affiliation: Università di Cagliari
 preferred-citation:
   type: article
@@ -35,11 +40,13 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0003-6899-7900"
     - family-names: Mattia
       given-names: Carmine
+      orcid: "https://orcid.org/0000-0002-5484-6381"
     - family-names: Zanda
       given-names: Andrea
       orcid: "https://orcid.org/0009-0004-2867-9374"
     - family-names: Atzori
       given-names: Maurizio
+      orcid: "https://orcid.org/0000-0001-6112-7310"
       affiliation: Università di Cagliari
   year: 2026
   month: 8

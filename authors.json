@@ -1,0 +1,35 @@
+[
+  {
+    "person_or_org": {
+      "type": "personal",
+      "family_name": "Di Iorio",
+      "given_name": "Mattia",
+      "identifiers": [{ "scheme": "orcid", "identifier": "0009-0003-6899-7900" }]
+    }
+  },
+  {
+    "person_or_org": {
+      "type": "personal",
+      "family_name": "Mattia",
+      "given_name": "Carmine",
+      "identifiers": [{ "scheme": "orcid", "identifier": "0000-0002-5484-6381" }]
+    }
+  },
+  {
+    "person_or_org": {
+      "type": "personal",
+      "family_name": "Zanda",
+      "given_name": "Andrea",
+      "identifiers": [{ "scheme": "orcid", "identifier": "0009-0004-2867-9374" }]
+    }
+  },
+  {
+    "person_or_org": {
+      "type": "personal",
+      "family_name": "Atzori",
+      "given_name": "Maurizio",
+      "identifiers": [{ "scheme": "orcid", "identifier": "0000-0001-6112-7310" }]
+    },
+    "affiliations": [{ "name": "Università di Cagliari" }]
+  }
+]

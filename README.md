@@ -8,7 +8,7 @@
 Pretrained **¹H NMR** foundation model — inference and paper adaptation protocols.
 
 **Paper:** [ChemRxiv](https://doi.org/10.26434/chemrxiv.15007823/v1).
-**Archive:** [Zenodo](https://doi.org/10.5281/zenodo.22142631) (all versions; v0.1.0 is [10.5281/zenodo.22142632](https://doi.org/10.5281/zenodo.22142632)).
+**Archive:** [Zenodo](https://doi.org/10.5281/zenodo.22142631) (all versions; v0.2.0 is [10.5281/zenodo.23260453](https://doi.org/10.5281/zenodo.23260453); v0.1.0 is [10.5281/zenodo.22142632](https://doi.org/10.5281/zenodo.22142632)).
 **Weights:** [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/rose-1h-nmr).
 **Code:** this repo.
 
@@ -16,7 +16,7 @@ Pretrained **¹H NMR** foundation model — inference and paper adaptation proto
   <img src="docs/encoder_geometry.png" alt="UMAP of ROSE frozen 1H NMR embeddings" width="800">
 </p>
 
-<p align="center"><em>Frozen [CLS] embeddings (UMAP). From the paper.</em></p>
+<p align="center"><em>Frozen [CLS] embeddings (UMAP). Stratified subsample, n=5500 over 14 source families.</em></p>
 
 ## Quick start
 
@@ -134,30 +134,30 @@ opt.step()
 
 ## Results
 
-Headline numbers from the ROSE paper (ROSE-Pretrain-L, 7.8M parameters, 3.2M pretrain spectra, InChIKey-14 holdout).
+Numbers from the paper (ROSE-Pretrain-L, 7.8M parameters, 3.2M pretrain spectra, InChIKey-14 holdout).
 
-**Internal** — native heads as pretrained, identity-disjoint held-out test (same corpus, no target-domain adaptation):
+**Internal** — native heads on the held-out test, no adaptation:
 
-| Task | Metric | ROSE |
-|------|--------|------|
-| Denoise | ΔSNR_peak @ 10 dB / cosine | 16.1 / 0.95 |
-| Pair | Top-1 | 87.8% |
-| Retrieval | Top-1 | 79.4% |
-| Forward | Chamfer (+ count) ↓ | 1.89 |
-| Peak | F1 @ 0.05 ppm | 0.80 |
+| Task | Metric | Gallery | ROSE |
+|------|--------|---------|------|
+| Denoise | ΔSNR_peak @ 10 dB / cosine | — | 16.3 / 0.95 |
+| Pair | Top-1 | 3,362 | 78.0% |
+| Retrieval | Top-1 | 14,323 | 64.3% |
+| Forward | Chamfer (+ count) ↓ | — | 0.42 |
+| Peak | F1 @ 0.05 ppm | — | 0.83 |
 
-Low-field slice (B₀ ≤ 100 MHz) is weaker on structure-linked heads (retrieval 45.2%, peak F1 0.20); denoise cosine stays high (0.99).
+Pair and retrieval Top-1 are against that gallery. On the low-field slice (B₀ ≤ 100 MHz) pair is 63.4% (gallery 1,745) and retrieval is 21.9% (gallery 1,506). Peak F1 is 0.20. Denoise cosine is 0.99.
 
-**External** — comparisons use the **same protocol** as ROSE, not a published stack under different retrieval machinery:
+**External**
 
 | Benchmark | Protocol | Metric | ROSE | Same-protocol baseline |
 |-----------|----------|--------|------|------------------------|
-| QIB edible oils (60 MHz) | frozen encoder + linear head | balanced accuracy | 98.8% | 98.9% PLS-DA (*accuracy*, not BA) |
-| NMRNet structure→spectrum | frozen encoder + head | Chamfer ↓ | 0.79 | 1.29 Morgan+Ridge |
-| NMRformer peak detection | frozen encoder + head | F1 | 69% | — |
-| NMR-Solver retrieval | 5-epoch P2, gallery ≈30k | Top-1 / Top-10 | 37.1% ± 2.1% / 67.7% ± 3.6% | scratch 0% / 0% |
+| QIB edible oils (60 MHz) | frozen encoder + linear head | 5-fold accuracy | 99.3% ± 0.9% | 98.9% PLS-DA (published accuracy) |
+| NMRNet structure→spectrum | frozen structure encoder + forward head | Chamfer ↓ | 0.783 ± 0.009 | 1.29 Morgan+Ridge |
+| NMRformer peak detection | frozen encoder + peak head, 5-fold | F1 | 0.64 ± 0.11 | 0.68 ± 0.09 find_peaks |
+| NMR-Solver (Zenodo) retrieval | 5-epoch stage, gallery ≈30k | Top-1 / Top-10 | 46.8% ± 0.7% / 74.9% ± 1.0% | peak-list match, 0% Top-1 |
 
-NMR-Solver literature (52.9% / 67.3% Top-1 / Top-10) uses a ≈10⁸ gallery plus FAISS HNSW and set-similarity rerank — not like-for-like; Top-10 at our 30k gallery already matches theirs.
+QIB balanced accuracy on the same folds is 99.5% ± 0.6%. PLS-DA balanced accuracy is 99.3% ± 0.6%. The Zenodo baseline compares an experimental peak list with simulated sticks in 0.05 ppm bins. NMR-Solver as published uses a gallery of about 10⁸, FAISS HNSW, and a set-similarity rerank: ¹H without formula is 0.67% / 3.78% Top-1 / Top-10; ¹H+¹³C with formula is 52.9% / 67.3%.
 
 Weights: Hugging Face [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/rose-1h-nmr).
 
@@ -182,7 +182,7 @@ Weights: Hugging Face [`romboai/rose-1h-nmr`](https://huggingface.co/romboai/ros
 **Recipes only — no pretraining parquet.** Reconstruct ROSE-Pretrain-L from the cited sources (`ATTRIBUTION.md`) with the paper holdout and split policy. This repo ships:
 
 - holdout **H** as InChIKey-14 keys (`indices/holdout/`)
-- split policy + catalog IDs (`indices/pretrain/pretrain_l_splits.meta.json`)
+- split IDs and policy (`indices/pretrain/pretrain_l_splits.json`, `pretrain_l_splits.meta.json`)
 - literature eval ID lists (`indices/benchmarks/`)
 
 Spectra stay with the original distributors. Weights are on Hugging Face, not a data dump.
@@ -196,7 +196,7 @@ Spectra stay with the original distributors. Weights are on Hugging Face, not a 
 | `configs/` | `rose.yaml`, `solvent_vocab.json` |
 | `hub/` | Hugging Face metadata (`config.json`) |
 | `scripts/` | Maintainer utilities (HF upload staging) |
-| `indices/pretrain/` | Pretrain split policy (`pretrain_l_splits.meta.json`; ID lists not shipped) |
+| `indices/pretrain/` | Pretrain split IDs and policy (`pretrain_l_splits.json`, `pretrain_l_splits.meta.json`) |
 | `indices/holdout/` | Paper test holdout (IK14), excluded from pretrain |
 | `indices/benchmarks/` | Eval splits (NMRBank, NMR-Solver) and literature holdouts |
 

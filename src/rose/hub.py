@@ -4,11 +4,11 @@ import hashlib
 from pathlib import Path
 
 DEFAULT_REPO_ID = "romboai/rose-1h-nmr"
-DEFAULT_REVISION = "7ef29e44865bc515e180c76aa970531993ed5dde"
+DEFAULT_REVISION = "6f475d26b1e522485e6c8f51b8523bd61a456314"
 DEFAULT_WEIGHTS = "best_model.pt"
 DEFAULT_CONFIG = "rose.yaml"
 # SHA-256 of Hub LFS object best_model.pt at DEFAULT_REVISION.
-DEFAULT_WEIGHTS_SHA256 = "f428ff3176de192ea2b4b2088fb5cdeafdb2ee867b6e1685a08db8d740d53a83"
+DEFAULT_WEIGHTS_SHA256 = "c34db07e093e2d1eadc6a5fedcc8a7441c3baea5ebabe61470154437da0b22ea"
 
 
 def file_sha256(path: Path, *, chunk: int = 1 << 20) -> str:
